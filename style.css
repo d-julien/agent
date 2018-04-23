@@ -1,0 +1,41 @@
+.CloseButton
+{
+    width: 322px;
+    height: 30px;
+    border :none;
+    background-color: red;
+    font-size: 1.15em;
+}
+
+.DisconnectButton
+{
+    width: 322px;
+    height: 30px;
+    border :none; 
+    background-color: orange;
+    font-size: 1.15em;
+}
+
+.RefreshButton
+{
+    width: 322px;
+    height: 30px;
+    border :none;
+    background-color: rgb(0, 179, 255);
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+.ChatContener
+{
+    display: flex;
+	flex-direction: column;
+}
+
+.Chats
+{
+    display: flex;
+	flex-direction: row;
+}
+
