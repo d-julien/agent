@@ -6,7 +6,7 @@ refresh.className = "RefreshButton";
 refresh.addEventListener("click", (e: Event) => this.refreshConversations());
 
 
-const apiPath = "http://teamnet-qna.azurewebsites.net/";
+const apiPath = "http://teamnet-qna.azurewebsites.net";
 setInterval(() =>
     fetch(apiPath + "/api/agent/GetAgentById/1", {
         method: "get",
