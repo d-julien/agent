@@ -6,18 +6,26 @@ refresh.className = "RefreshButton";
 refresh.addEventListener("click", (e: Event) => this.refreshConversations());
 
 
-const apiPath = "https://2dd23024.ngrok.io";
+const apiPath = "http://teamnet-qna.azurewebsites.net/";
 setInterval(() =>
-    fetch(apiPath + "/api/agent/GetAgentById/1")
+    fetch(apiPath + "/api/agent/GetAgentById/1", {
+        method: "get",
+        headers: new Headers({
+            "Content-Type": "application/json",
+            "cache": "no-cache",
+            "Access-Control-Allow-Origin": "*"
+        }),
+        mode: "cors"
+    })
         .then(response => response.text())
         .then(text => {
             const conversationId = text.replace(/"/g, '');
             console.log("conversationId", conversationId);
-            if (conversationId !== 'None') {
+            if (conversationId.length != 0 && conversationId != 'None') {
                 createIframe(conversationId);
             }
         })
-    , 3 * 10000);
+    , 5 * 1000);
 
 
 
@@ -32,7 +40,7 @@ const createIframe = (conversationId: string) => {
     const id = `botchat_${conversationId}`;
     const iframe = <HTMLIFrameElement>document.createElement('iframe');
     iframe.id = id;
-    iframe.src = 'botchat?s=5njC38895LU.cwA.cpI.dDo2HSsvtW-ObSPi6F6avjRU6iWASAKoiibhXnswzKs';
+    iframe.src = 'botchat?s=ACoV0zRWgbA.cwA.0rQ.chN4-_IaZaggp77g0II0z8HSqpmVU7a8I9h2V9mfY9Y';
     iframe.width = "320";
     iframe.height = "500";
     iframe.onload = (event: Event) => {

@@ -5,18 +5,26 @@ var messages = document.getElementById("messages");
 var refresh = document.getElementById("refresh");
 refresh.className = "RefreshButton";
 refresh.addEventListener("click", function (e) { return _this.refreshConversations(); });
-var apiPath = "https://2dd23024.ngrok.io";
+var apiPath = "http://teamnet-qna.azurewebsites.net/";
 setInterval(function () {
-    return fetch(apiPath + "/api/agent/GetAgentById/1")
+    return fetch(apiPath + "/api/agent/GetAgentById/1", {
+        method: "get",
+        headers: new Headers({
+            "Content-Type": "application/json",
+            "cache": "no-cache",
+            "Access-Control-Allow-Origin": "*"
+        }),
+        mode: "cors"
+    })
         .then(function (response) { return response.text(); })
         .then(function (text) {
         var conversationId = text.replace(/"/g, '');
         console.log("conversationId", conversationId);
-        if (conversationId !== 'None') {
+        if (conversationId.length != 0 && conversationId != 'None') {
             createIframe(conversationId);
         }
     });
-}, 3 * 10000);
+}, 5 * 1000);
 var sendToBot = function (id, conversationId) {
     var iframe = document.getElementById(id).contentWindow;
     console.log("iframe", id);
@@ -26,7 +34,7 @@ var createIframe = function (conversationId) {
     var id = "botchat_" + conversationId;
     var iframe = document.createElement('iframe');
     iframe.id = id;
-    iframe.src = 'botchat?s=5njC38895LU.cwA.cpI.dDo2HSsvtW-ObSPi6F6avjRU6iWASAKoiibhXnswzKs';
+    iframe.src = 'botchat?s=ACoV0zRWgbA.cwA.0rQ.chN4-_IaZaggp77g0II0z8HSqpmVU7a8I9h2V9mfY9Y';
     iframe.width = "320";
     iframe.height = "500";
     iframe.onload = function (event) {
