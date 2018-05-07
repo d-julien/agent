@@ -6,14 +6,18 @@ refresh.className = "RefreshButton";
 refresh.addEventListener("click", (e: Event) => this.refreshConversations());
 
 
-const apiPath = "http://teamnet-qna.azurewebsites.net";
+// const apiPath = "http://teamnet-qna.azurewebsites.net";
+//const agentPath = "http://teamnet-agent.azurewebsites.net";
+const apiPath = "https://06e2c2aa.ngrok.io";
+
 setInterval(() =>
     fetch(apiPath + "/api/agent/GetAgentById/1", {
         method: "get",
         headers: new Headers({
             "Content-Type": "application/json",
             "cache": "no-cache",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS"
         }),
         mode: "cors"
     })
@@ -81,7 +85,8 @@ function refreshConversations() {
         headers: new Headers({
             "Content-Type": "application/json",
             "cache": "no-cache",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS"
         }),
         mode: "cors"
     })

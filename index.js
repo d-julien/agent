@@ -5,14 +5,17 @@ var messages = document.getElementById("messages");
 var refresh = document.getElementById("refresh");
 refresh.className = "RefreshButton";
 refresh.addEventListener("click", function (e) { return _this.refreshConversations(); });
-var apiPath = "http://teamnet-qna.azurewebsites.net/";
+var apiPath = "http://teamnet-qna.azurewebsites.net";
+//const agentPath = "http://teamnet-agent.azurewebsites.net";
+//const apiPath = "https://82dbe006.ngrok.io";
 setInterval(function () {
     return fetch(apiPath + "/api/agent/GetAgentById/1", {
         method: "get",
         headers: new Headers({
             "Content-Type": "application/json",
             "cache": "no-cache",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS"
         }),
         mode: "cors"
     })
@@ -67,7 +70,8 @@ function refreshConversations() {
         headers: new Headers({
             "Content-Type": "application/json",
             "cache": "no-cache",
-            "Access-Control-Allow-Origin": "*"
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS"
         }),
         mode: "cors"
     })
