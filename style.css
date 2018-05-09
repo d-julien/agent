@@ -36,6 +36,7 @@
 .Chats
 {
     display: flex;
-	flex-direction: row;
+    flex-direction: row;
+    margin-right: 5%;
 }
 

@@ -6,9 +6,9 @@ refresh.className = "RefreshButton";
 refresh.addEventListener("click", (e: Event) => this.refreshConversations());
 
 
-// const apiPath = "http://teamnet-qna.azurewebsites.net";
+const apiPath = "http://teamnet-qna.azurewebsites.net";
 //const agentPath = "http://teamnet-agent.azurewebsites.net";
-const apiPath = "https://06e2c2aa.ngrok.io";
+// const apiPath = "https://d1520beb.ngrok.io";
 
 setInterval(() =>
     fetch(apiPath + "/api/agent/GetAgentById/1", {
@@ -16,8 +16,6 @@ setInterval(() =>
         headers: new Headers({
             "Content-Type": "application/json",
             "cache": "no-cache",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS"
         }),
         mode: "cors"
     })
@@ -55,7 +53,7 @@ const createIframe = (conversationId: string) => {
 
     var close = document.createElement("input");
     close.type = "button";
-    close.value = "Close";
+    close.value = "Fermer";
     close.addEventListener('click', function () {
         closeChat(close);
     });
@@ -85,8 +83,6 @@ function refreshConversations() {
         headers: new Headers({
             "Content-Type": "application/json",
             "cache": "no-cache",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS"
         }),
         mode: "cors"
     })
